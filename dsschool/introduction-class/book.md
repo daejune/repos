@@ -116,3 +116,26 @@ Data Science에서는 시각화과정을 탐험하는 과정이라고 한다<br>
 Data 분석 기본자들은 distplot에서 히스토그램을 보는 것을 추천하지 않음<br>
 Data는 연속적인 것 보다 이산적인 분포가 많아서 이상점이 존재함<br>
 Gaussian 분포를 확인 할 수 있음
+
+
+
+### Classification vs Regression
+맞춰야하는 정답이 Categorical하면 Classification<br>
+맞춰야하는 정답이 Continuous하면 Regression
+
+Classification => DecisionTreeClassifier
+Regression => DecisionTreeRegressor
+
+## Random State
+model에서 Random 값을 고정하여 결과를 동일하게 만드는 과정
+
+## datetime parse in pandas
+
+pd.to_datetime(train["datetime"]) <br>
+train["datetime"].dt.year
+
+
+## Exploratory Data Analysis (EDA)
+IDEA!!! <br>
+이론화 되어 있는게 아님!! => 특정 분야의 전문가들이 있으면 그 Gap을 줄일 수 있다.<br>
+이론보다 경험이 더 중요함!!

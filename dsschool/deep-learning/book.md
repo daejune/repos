@@ -155,3 +155,85 @@ for epoch in range(num_epoch):
     W = W - learning_rate * X.T.dot(y_predict_hot - y_hot) / len(X)
     b = b - learning_rate * (y_predict_hot - y_hot).mean(axis = 0)
 ```
+
+
+#
+# Week 02
+
+## AND / OR
+- Dicision Boundery가 보이면 Single Layer로 풀 수 있다.
+
+## XOR
+- Dicision Boundery가 보이지 않으면 Single Layer로 풀 수 없다.
+
+## Polynominal
+- feature 끼리 곱셈 or 제곱 등을 통해 추가적인 feature를 만들어 문제를 풀 수 있다.
+
+## Multi Layer Neural Network (Perceptron)
+- input-layer - hidden-layer - output-layer
+- {hidden-layer - output-layer} -> Classification
+- {input-layer - hidden-layer} -> Feture Extractor
+
+----
+hidden-layer 는 이론상 무한히 넣을 수 있다.
+
+forward propagation / back propagation
+
+chain-rule을 사용하면 아무리 어려운 deep learning 공식을 쉽게 풀 수 있다.
+
+공식이 복잡하더라도 잘게 쪼개면 그 공식은 풀기 쉽다.
+
+back propagation은 caching효과를 만들어낼 수 있다.
+
+Learning Representations by Backpropagating Error
+
+Convolution Layer...
+
+Many configurations....
+
+가로x세로는 3x3이 제일 좋음
+
+## vggnet
+- small convolutions == lagre convolution
+
+9*(49 25 9 1) + 9*9 + 9
+25 * (25 + 1)
+
+overlaping maxpooling
+
+```python
+## (heigth - 1) * (width - 1) * 3 * 3
+cov_height = height - 1
+cov_width = width - 1
+for h in range(1, height - 1):
+    for w in range(1, width - 1):
+        sum = 0
+        for mr in range(0, 3):
+            for mc in range(0, 3):
+               sum += img[(h + mr - 1) * width + (w + mc - 1)] * cov1[mr * 3 + mc]
+        cov_img[(h - 1) * con_width + (w - 1)] = sum
+
+## (cov_height - 1) * (cov_width - 1) * 3 * 3
+cov2_height = cov_height - 1
+cov2_width = cov_width - 1
+for h in range(1, cov_height - 1):
+    for w in range(1, cov_width - 1):
+        sum = 0
+        for mr in range(0, 3):
+            for mc in range(0, 3):
+               sum += cov_img[(h + mr - 1) * cov_width + (w + mc - 1)] * cov2[mr * 3 + mc]
+        cov2_img[(h - 1) * cov2_width + (w - 1)] = sum
+```
+
+```python
+## (heigth - 2) * (width - 2) * 5 * 5
+cov_height = height - 2
+cov_width = width - 2
+for h in range(2, height - 2):
+    for w in range(2, width - 2):
+        sum = 0
+        for mr in range(0, 5):
+            for mc in range(0, 5):
+               sum += img[(h + mr - 2) * width + (w + mc - 2)] * cov[mr * 5 + mc]
+        cov_img[(h - 2) * cov_width + (w - 2)] = sum
+```
